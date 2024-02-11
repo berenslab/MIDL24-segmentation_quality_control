@@ -1,5 +1,6 @@
-### Experiments for MIDL 2024 submission 
-<i> Efficiently correcting patch-based segmentation errors to control image-level performance </i>
+### Efficiently correcting patch-based segmentation errors to control image-level performance 
+<i> Experiments for MIDL 2024 submission. </i>
+
 
 Instructions to Reproduce the Results:
   1. Download FIVES dataset (Jin et al., 2022) and register its path in `paths.yaml`.
