@@ -27,12 +27,6 @@ dev = [
     "jupyter",
     "ipython",
 ]
-dev-bunch = [
-    "ipykernel",
-    "jupyter",
-    "ipython",
-    "bunch",
-]
 
 [tool.hatch.build.targets.wheel]
 packages = ["segmentation_quality_control"]
