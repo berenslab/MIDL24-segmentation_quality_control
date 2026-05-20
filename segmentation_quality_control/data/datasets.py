@@ -3,7 +3,7 @@ import torch
 import numpy as np
 from glob import glob
 import cv2
-from utils.notebook_utils import clahe_equalized
+from ..utils.notebook_utils import clahe_equalized
 from torch.utils.data import Dataset # or non-generic Dataset class?
 
 class DRIVEDataset(Dataset):
