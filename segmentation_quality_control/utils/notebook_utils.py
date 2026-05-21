@@ -3,10 +3,10 @@ import numpy as np
 import cv2
 from sklearn.metrics import f1_score 
 from scipy.optimize import minimize
-from utils.model_definition import FR_UNet
+from ..utils.model_definition import FR_UNet
 from scipy.stats import entropy
 import torch.nn as nn
-from models.model_utils import dice_metric
+from ..models.model_utils import dice_metric
 
 
 def get_ensemble(model_lists, dropout=False, device=None):
@@ -15,7 +15,7 @@ def get_ensemble(model_lists, dropout=False, device=None):
     for predictor_path in model_lists:
 
         model = FR_UNet(num_classes=1, num_channels=3, feature_scale=2, dropout=0.1)
-        checkpoint= torch.load(predictor_path, map_location=device)
+        checkpoint= torch.load(predictor_path, map_location=device, weights_only=False)
         model.load_state_dict(checkpoint['state_dict'])
         model.eval()
         if dropout: # Dropout ensemble

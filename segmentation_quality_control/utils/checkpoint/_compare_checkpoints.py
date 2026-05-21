@@ -9,8 +9,8 @@ from pathlib import Path
 
 import torch
 
-from utils.checkpoint.io import load_checkpoint
-from utils.model_definition import FR_UNet
+from ..io import load_checkpoint
+from ..model_definition import FR_UNet
 
 
 def short_path(path: Path | str, tail: int = 2) -> str:

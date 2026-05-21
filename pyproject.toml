@@ -1,28 +1,38 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
 [project]
 name = "segmentation_quality_control"
-version = "0.0.1"
+dynamic = ["version"]
 description = "MIDL 2024 paper: Efficiently correcting patch-based segmentation errors to control image-level performance in retinal images"
-requires-python = ">=3.10"
+requires-python = ">=3.9"
 dependencies = [
     "torch>=2.0",
-    "timm>=0.9,<1.0",
-    "numpy",
-    "scipy",
-    "scikit-learn",
-    "opencv-python-headless",
-    "pandas",
-    "matplotlib",
-    "pillow",
-    "pyyaml",
-    "munch",
+    "timm>=0.9.16",
+    "numpy>=1.24.0",
+    "scipy>=1.10.0",
+    "scikit-learn>=1.1.2",
+    "opencv-python-headless>=4.9.0.80",
+    "pandas>=1.4.2",
+    "matplotlib>=3.6.2",
+    "pillow>=10.2.0",
+    "pyyaml>=6.0.0",
+    "munch>=4.0.0",
 ]
 
-[dependency-groups]
+[project.optional-dependencies]
 dev = [
+    "ipykernel",
     "jupyter",
     "ipython",
-    "bunch",
 ]
 
+[tool.hatch.build.targets.wheel]
+packages = ["segmentation_quality_control"]
+
+[tool.hatch.version]
+path = "segmentation_quality_control/_version.py"
+
 [tool.uv]
-package = false
+package = true
