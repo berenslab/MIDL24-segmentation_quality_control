@@ -16,10 +16,10 @@ DOWNLOAD_CHUNK_SIZE = 1024 * 1024
 DOWNLOAD_TIMEOUT_SECONDS = 300
 
 VESSEL_WEIGHTS_GIT_URL = (
-    "https://github.com/berenslab/MIDL24-segmentation_quality_control.git"
+    "https://github.com/juliusge/MIDL24-segmentation_quality_control.git" # TODO
 )
 # Weights location on GitHub; PyPI wheels do not bundle checkpoint files.
-VESSEL_WEIGHTS_GIT_REF = "make-package-without-bunch"
+VESSEL_WEIGHTS_GIT_REF = "weights-download" # TODO
 VESSEL_WEIGHTS_GIT_SUBDIR = "trained"
 VESSEL_WEIGHTS_RAW_BASE = (
     "https://raw.githubusercontent.com/berenslab/MIDL24-segmentation_quality_control"
