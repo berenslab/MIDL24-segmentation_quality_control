@@ -16,14 +16,34 @@ DOWNLOAD_CHUNK_SIZE = 1024 * 1024
 DOWNLOAD_TIMEOUT_SECONDS = 300
 
 VESSEL_WEIGHTS_GIT_URL = (
-    "https://github.com/juliusge/MIDL24-segmentation_quality_control.git" # TODO
+    "https://github.com/juliusge/MIDL24-segmentation_quality_control.git"  # TODO
 )
 # Weights location on GitHub; PyPI wheels do not bundle checkpoint files.
-VESSEL_WEIGHTS_GIT_REF = "weights-download" # TODO
+VESSEL_WEIGHTS_GIT_REF = "weights-download"  # TODO
 VESSEL_WEIGHTS_GIT_SUBDIR = "trained"
-VESSEL_WEIGHTS_RAW_BASE = (
-    "https://raw.githubusercontent.com/berenslab/MIDL24-segmentation_quality_control"
-    f"/{VESSEL_WEIGHTS_GIT_REF}/{VESSEL_WEIGHTS_GIT_SUBDIR}"
+
+
+def _github_repo_slug(git_url: str) -> str:
+    """Return ``owner/repo`` from a GitHub git remote URL."""
+    normalized = git_url.removesuffix(".git")
+    marker = "github.com/"
+    if marker not in normalized:
+        raise ValueError(f"Unsupported GitHub URL: {git_url}")
+    return normalized.rsplit(marker, 1)[-1]
+
+
+def _github_raw_base(git_url: str, git_ref: str, subdir: str) -> str:
+    """Build the raw.githubusercontent.com base URL for a repo ref subfolder."""
+    return (
+        f"https://raw.githubusercontent.com/{_github_repo_slug(git_url)}"
+        f"/{git_ref}/{subdir}"
+    )
+
+
+VESSEL_WEIGHTS_RAW_BASE = _github_raw_base(
+    VESSEL_WEIGHTS_GIT_URL,
+    VESSEL_WEIGHTS_GIT_REF,
+    VESSEL_WEIGHTS_GIT_SUBDIR,
 )
 
 

@@ -8,7 +8,11 @@ import pytest
 
 from segmentation_quality_control.utils.checkpoint.weights import (
     ENSEMBLE_WEIGHT_FILES,
+    VESSEL_WEIGHTS_GIT_REF,
+    VESSEL_WEIGHTS_GIT_SUBDIR,
+    VESSEL_WEIGHTS_GIT_URL,
     VESSEL_WEIGHTS_RAW_BASE,
+    _github_repo_slug,
     _fetch_weights,
     _has_ensemble_weights,
     _manual_download_instructions,
@@ -166,6 +170,13 @@ class TestManualInstructions:
             assert f"{VESSEL_WEIGHTS_RAW_BASE}/{name}" in text
             assert f"wget -O {models_dir / name}" in text
             assert f"curl -L -o {models_dir / name}" in text
+
+    def test_raw_base_matches_git_url(self):
+        slug = _github_repo_slug(VESSEL_WEIGHTS_GIT_URL)
+        assert VESSEL_WEIGHTS_RAW_BASE == (
+            f"https://raw.githubusercontent.com/{slug}/"
+            f"{VESSEL_WEIGHTS_GIT_REF}/{VESSEL_WEIGHTS_GIT_SUBDIR}"
+        )
 
 
 class TestFetchWeightsFallback:
