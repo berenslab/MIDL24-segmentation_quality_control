@@ -6,7 +6,24 @@ build-backend = "hatchling.build"
 name = "segmentation_quality_control"
 dynamic = ["version"]
 description = "MIDL 2024 paper: Efficiently correcting patch-based segmentation errors to control image-level performance in retinal images"
+readme = "README.md"
 requires-python = ">=3.9"
+authors = [
+    { name = "Julius Gervelmeyer", email = "julius.gervelmeyer@student.uni-tuebingen.de" },
+    { name = "Patrick Köhler" },
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Operating System :: OS Independent",
+    "Topic :: Scientific/Engineering :: Image Recognition",
+    "Topic :: Scientific/Engineering :: Medical Science Apps.",
+]
 dependencies = [
     "torch>=2.0",
     "timm>=0.9.16",
@@ -29,6 +46,11 @@ dev = [
     "pytest",
 ]
 
+[project.urls]
+Homepage = "https://github.com/berenslab/MIDL24-segmentation_quality_control"
+Repository = "https://github.com/berenslab/MIDL24-segmentation_quality_control"
+Issues = "https://github.com/berenslab/MIDL24-segmentation_quality_control/issues"
+
 [tool.pytest.ini_options]
 markers = [
     "integration: tests that download weights from GitHub over HTTPS (slow, needs network)",
@@ -37,6 +59,17 @@ testpaths = ["tests"]
 
 [tool.hatch.build.targets.wheel]
 packages = ["segmentation_quality_control"]
+
+# Keep the source distribution small: ship only the importable package,
+# the tests, and the readme. The git-tracked trained/*.pth checkpoints
+# (~360 MB) would otherwise be bundled into the sdist and exceed PyPI's
+# per-file size limit, failing the upload.
+[tool.hatch.build.targets.sdist]
+include = [
+    "/segmentation_quality_control",
+    "/tests",
+    "/README.md",
+]
 
 [tool.hatch.version]
 path = "segmentation_quality_control/_version.py"

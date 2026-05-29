@@ -74,7 +74,7 @@ If the automatic download fails, fetch the files directly:
 ```bash
 mkdir -p ~/.cache/segmentation_quality_control/trained
 wget -O ~/.cache/segmentation_quality_control/trained/FRUNet_0.pth \
-  https://raw.githubusercontent.com/berenslab/MIDL24-segmentation_quality_control/make-package-without-bunch/trained/FRUNet_0.pth
+  https://raw.githubusercontent.com/berenslab/MIDL24-segmentation_quality_control/main/trained/FRUNet_0.pth
 # repeat for FRUNet_1.pth … FRUNet_4.pth, or use curl -L -o ...
 ```
 
@@ -86,7 +86,7 @@ git clone --depth 1 --filter=blob:none --sparse \
   ~/tmp/segmentation_weights
 cd ~/tmp/segmentation_weights
 git sparse-checkout set trained
-git checkout make-package-without-bunch
+git checkout main
 # then copy trained/FRUNet_*.pth into your cache or repo trained/ directory
 ```
 
