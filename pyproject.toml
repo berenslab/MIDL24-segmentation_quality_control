@@ -26,7 +26,14 @@ dev = [
     "ipykernel",
     "jupyter",
     "ipython",
+    "pytest",
 ]
+
+[tool.pytest.ini_options]
+markers = [
+    "integration: tests that download weights from GitHub over HTTPS (slow, needs network)",
+]
+testpaths = ["tests"]
 
 [tool.hatch.build.targets.wheel]
 packages = ["segmentation_quality_control"]
