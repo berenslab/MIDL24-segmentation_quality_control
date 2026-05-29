@@ -4,21 +4,6 @@
 ## Installation
 <sup>Requires Python >= 3.9</sup>
 
-### From PyPI (recommended for use as a dependency)
-Install the released package:
-
-```bash
-pip install segmentation_quality_control
-```
-
-PyPI wheels include the Python code only. Ensemble checkpoints (~360 MB) are not bundled; see [Model weights](#model-weights) below.
-
-### From GitHub (development version)
-Install the latest development version without cloning:
-
-```bash
-pip install git+https://github.com/berenslab/MIDL24-segmentation_quality_control
-```
 
 ### Development setup with `uv` (recommended)
 Clone the repository:
@@ -41,6 +26,22 @@ source .venv/bin/activate  # Windows: .venv\Scripts\activate
 pip install -e ".[dev]"
 ```
 
+### From PyPI (recommended for use as a dependency)
+Install the released package:
+
+```bash
+pip install segmentation_quality_control
+```
+
+PyPI wheels include the Python code only. Ensemble checkpoints (~360 MB) are not bundled; see [Model weights](#model-weights) below.
+
+### From GitHub (development version)
+Install the latest development version without cloning:
+
+```bash
+pip install git+https://github.com/berenslab/MIDL24-segmentation_quality_control
+```
+
 ## Model weights
 The FR-UNet ensemble uses five checkpoints: `FRUNet_0.pth`, ..., `FRUNet_4.pth`.
 
@@ -58,7 +59,7 @@ When loading models, the package resolves the checkpoint directory in this order
 | Windows | `%LOCALAPPDATA%\segmentation_quality_control\trained\` |
 
 ### Automatic download
-If weights are missing from the resolved location, they are downloaded over HTTPS from GitHub (`trained/`) into the cache directory:
+If weights are missing from the resolved location (such as when using as a pypi dependency), they are downloaded over HTTPS from GitHub (`trained/`) into the cache directory:
 
 ```python
 from segmentation_quality_control.utils import ensure_models_dir
@@ -108,3 +109,23 @@ Instructions to reproduce the experiments (development setup):
 
 ## References
 Jin, Kai, et al. "Fives: A fundus image dataset for artificial Intelligence based vessel segmentation." Scientific Data 9.1 (2022): 475.
+
+## Paper and Citation
+The paper (MIDL 2024 oral):
+- Köhler et al., Efficiently correcting patch-based segmentation errors to control image-level performance in retinal images (2024) 
+- [PDF at OpenReview](https://openreview.net/forum?id=DDHRGHfwji)
+
+Citation:
+```bibtex
+@inproceedings{
+koehler2024efficiently,
+title={Efficiently correcting patch-based segmentation errors to control image-level performance in retinal images},
+author={Patrick K{\"o}hler and Jeremiah Fadugba and Philipp Berens and Lisa M. Koch},
+booktitle={Medical Imaging with Deep Learning},
+year={2024},
+url={https://openreview.net/forum?id=DDHRGHfwji}
+}
+```
+
+## Note
+This package has been bundled into the [Fundus Image Toolbox](https://github.com/berenslab/fundus_image_toolbox) for convenient application next to other useful retinal fundus imaging tools.
