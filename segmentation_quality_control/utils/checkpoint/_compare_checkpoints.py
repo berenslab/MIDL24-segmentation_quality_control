@@ -3,6 +3,8 @@
 Validates that converted checkpoints match the original weights for inference.
 """
 
+from __future__ import annotations
+
 from argparse import ArgumentParser
 import subprocess
 from pathlib import Path

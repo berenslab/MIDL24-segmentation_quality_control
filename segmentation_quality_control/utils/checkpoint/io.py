@@ -4,6 +4,8 @@ Training was done outside this repository. Use ``save_checkpoint`` when
 saving new weights after external retraining.
 """
 
+from __future__ import annotations
+
 from pathlib import Path
 from typing import Any
 
