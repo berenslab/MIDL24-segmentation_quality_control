@@ -61,7 +61,7 @@ When loading models, the package resolves the checkpoint directory in this order
 If weights are missing from the resolved location, they are downloaded over HTTPS from GitHub (`trained/`) into the cache directory:
 
 ```python
-from segmentation_quality_control.utils.checkpoint.weights import ensure_models_dir
+from segmentation_quality_control.utils import ensure_models_dir
 
 models_dir = ensure_models_dir()  # downloads on first call if needed
 ```
